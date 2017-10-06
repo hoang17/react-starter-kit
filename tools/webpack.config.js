@@ -32,6 +32,10 @@ const minimizeCssOptions = {
   discardComments: { removeAll: true },
 };
 
+const workboxPlugin = require('workbox-webpack-plugin');
+
+const DIST_DIR = path.resolve(__dirname, '../build/public/assets');
+
 //
 // Common configuration chunk to be used for both
 // client-side (client.js) and server-side (server.js) bundles
@@ -41,7 +45,7 @@ const config = {
   context: path.resolve(__dirname, '..'),
 
   output: {
-    path: path.resolve(__dirname, '../build/public/assets'),
+    path: DIST_DIR,
     publicPath: '/assets/',
     pathinfo: isVerbose,
     filename: isDebug ? '[name].js' : '[name].[chunkhash:8].js',
@@ -349,6 +353,13 @@ const clientConfig = {
     // Webpack Bundle Analyzer
     // https://github.com/th0r/webpack-bundle-analyzer
     ...(isAnalyze ? [new BundleAnalyzerPlugin()] : []),
+
+    new workboxPlugin({
+      globDirectory: DIST_DIR,
+      globPatterns: ['*'],
+      // globPatterns: ['**/*.{html,js,css}'],
+      swDest: path.join(path.resolve(__dirname, '../build/public'), 'service-worker.js')
+    }),
   ],
 
   // Some libraries import Node modules but don't use them in the browser.

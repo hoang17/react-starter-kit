@@ -30,7 +30,20 @@ import schema from './data/schema';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import config from './config';
 
+import morgan from 'morgan';
+import helmet from 'helmet';
+import lusca from 'lusca';
+import expressValidator from 'express-validator';
+import compression from 'compression';
+
 const app = express();
+
+app.use(morgan('dev'));
+app.use(helmet());
+app.use(expressValidator());
+app.use(lusca.xframe('SAMEORIGIN'));
+app.use(lusca.xssProtection(true));
+app.use(compression({ threshold: 0 }));
 
 //
 // Tell any CSS tooling (such as Material UI) to use all vendor prefixes if the
@@ -42,7 +55,10 @@ global.navigator.userAgent = global.navigator.userAgent || 'all';
 //
 // Register Node.js middleware
 // -----------------------------------------------------------------------------
-app.use(express.static(path.resolve(__dirname, 'public')));
+// Cache static assets in ./public
+app.use(express.static(path.resolve(__dirname, 'public'), { maxAge: 31557600000 })) // one year
+// app.use(express.static(path.resolve(__dirname, 'public')));
+
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

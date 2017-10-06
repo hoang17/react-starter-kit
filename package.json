@@ -6,21 +6,31 @@
     "node": ">=6.5",
     "npm": ">=3.10"
   },
-  "browserslist": [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
+  "browserslist": [
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "not ie < 9"
+  ],
   "dependencies": {
     "babel-polyfill": "^7.0.0-beta.2",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "classnames": "^2.2.5",
+    "compression": "^1.7.1",
     "cookie-parser": "^1.4.3",
     "core-js": "^2.5.1",
     "express": "^4.16.1",
     "express-graphql": "^0.6.11",
     "express-jwt": "^5.3.0",
+    "express-validator": "^4.2.1",
     "graphql": "^0.11.7",
+    "helmet": "^3.8.2",
     "history": "^4.7.2",
     "isomorphic-style-loader": "^4.0.0",
     "jsonwebtoken": "^8.0.1",
+    "lusca": "^1.5.2",
+    "morgan": "^1.9.0",
     "node-fetch": "^1.7.3",
     "normalize.css": "^7.0.0",
     "passport": "^0.4.0",
@@ -71,7 +81,6 @@
     "flow-bin": "^0.56.0",
     "front-matter": "^2.2.0",
     "glob": "^7.1.2",
-    "husky": "^0.14.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
     "jscodeshift": "^0.3.32",
@@ -112,12 +121,22 @@
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.19.1",
-    "webpack-node-externals": "^1.6.0"
+    "webpack-node-externals": "^1.6.0",
+    "workbox-webpack-plugin": "^2.1.0"
   },
   "lint-staged": {
-    "*.{js,jsx}": ["eslint --fix", "git add"],
-    "*.{json,graphql}": ["prettier --write", "git add"],
-    "*.{css,less,styl,scss,sass,sss}": ["stylelint --fix", "git add"]
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{json,graphql}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{css,less,styl,scss,sass,sss}": [
+      "stylelint --fix",
+      "git add"
+    ]
   },
   "scripts": {
     "precommit": "lint-staged",
