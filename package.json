@@ -6,12 +6,7 @@
     "node": ">=6.5",
     "npm": ">=3.10"
   },
-  "browserslist": [
-    ">1%",
-    "last 4 versions",
-    "Firefox ESR",
-    "not ie < 9"
-  ],
+  "browserslist": [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
   "dependencies": {
     "babel-polyfill": "^7.0.0-beta.2",
     "bluebird": "^3.5.1",
@@ -125,18 +120,9 @@
     "workbox-webpack-plugin": "^2.1.0"
   },
   "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --fix",
-      "git add"
-    ],
-    "*.{json,graphql}": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.{css,less,styl,scss,sass,sss}": [
-      "stylelint --fix",
-      "git add"
-    ]
+    "*.{js,jsx}": ["eslint --fix", "git add"],
+    "*.{json,graphql}": ["prettier --write", "git add"],
+    "*.{css,less,styl,scss,sass,sss}": ["stylelint --fix", "git add"]
   },
   "scripts": {
     "precommit": "lint-staged",

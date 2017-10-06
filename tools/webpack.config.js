@@ -71,7 +71,10 @@ const config = {
       // Rules for JS / JSX
       {
         test: reScript,
-        include: path.resolve(__dirname, '../src'),
+        include: [
+          path.resolve(__dirname, '../src'),
+          path.resolve(__dirname, '../tools'),
+        ],
         loader: 'babel-loader',
         options: {
           // https://github.com/babel/babel-loader#options
@@ -282,7 +285,13 @@ const config = {
 
   // Choose a developer tool to enhance debugging
   // https://webpack.js.org/configuration/devtool/#devtool
-  devtool: isDebug ? 'cheap-module-inline-source-map' : 'source-map',
+  // devtool: isDebug ? 'cheap-module-inline-source-map' : 'source-map',
+  devtool: isDebug ? 'cheap-module-source-map' : false,
+
+  performance: {
+    maxEntrypointSize: 300000,
+    hints: isDebug ? 'warning' : false
+  },
 };
 
 //
@@ -360,6 +369,7 @@ const clientConfig = {
       // globPatterns: ['**/*.{html,js,css}'],
       swDest: path.join(path.resolve(__dirname, '../build/public'), 'service-worker.js')
     }),
+
   ],
 
   // Some libraries import Node modules but don't use them in the browser.
@@ -469,11 +479,11 @@ const serverConfig = {
 
     // Adds a banner to the top of each generated chunk
     // https://webpack.js.org/plugins/banner-plugin/
-    new webpack.BannerPlugin({
-      banner: 'require("source-map-support").install();',
-      raw: true,
-      entryOnly: false,
-    }),
+    // new webpack.BannerPlugin({
+    //   banner: 'require("source-map-support").install();',
+    //   raw: true,
+    //   entryOnly: false,
+    // }),
   ],
 
   // Do not replace node globals with polyfills
