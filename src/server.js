@@ -134,7 +134,6 @@ app.get('*', async (req, res, next) => {
     // https://facebook.github.io/react/docs/context.html
     const context = {
       // Enables critical path CSS rendering
-      // https://github.com/kriasoft/isomorphic-style-loader
       insertCss: (...styles) => {
         // eslint-disable-next-line no-underscore-dangle
         styles.forEach(style => css.add(style._getCss()));

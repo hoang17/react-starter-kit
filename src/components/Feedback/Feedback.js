@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import withStyles from 'isomorphic-style-loader-fork/lib/withStyles';
 import s from './Feedback.css';
 
 class Feedback extends React.Component {

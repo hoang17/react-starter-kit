@@ -4967,9 +4967,9 @@ isomorphic-fetch@^2.1.1:
     node-fetch "^1.0.1"
     whatwg-fetch ">=0.10.0"
 
-isomorphic-style-loader@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/isomorphic-style-loader/-/isomorphic-style-loader-4.0.0.tgz#0d8faa12885e2830918c54815042c0e3b55dc38d"
+isomorphic-style-loader-fork@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/isomorphic-style-loader-fork/-/isomorphic-style-loader-fork-4.2.0.tgz#bf68477b8ec7b623940b6ef9c59ded0c0ab5366b"
   dependencies:
     babel-runtime "^6.25.0"
     hoist-non-react-statics "^2.2.2"
