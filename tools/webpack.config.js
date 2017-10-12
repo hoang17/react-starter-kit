@@ -288,10 +288,10 @@ const config = {
   // devtool: isDebug ? 'cheap-module-inline-source-map' : 'source-map',
   devtool: isDebug ? 'cheap-module-source-map' : false,
 
-  performance: {
-    maxEntrypointSize: 300000,
-    hints: isDebug ? 'warning' : false
-  },
+  // performance: {
+  //   maxEntrypointSize: 300000,
+  //   hints: isDebug ? 'warning' : false
+  // },
 };
 
 //
