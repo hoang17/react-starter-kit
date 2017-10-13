@@ -109,8 +109,8 @@ const config = {
             ['react', { development: isDebug }],
           ],
           plugins: [
-            "emotion",
-            // "babel-plugin-styled-components",
+            // "emotion",
+            "babel-plugin-styled-components",
             // Treat React JSX elements as value types and hoist them to the highest scope
             // https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-constant-elements
             ...(isDebug ? ['transform-react-constant-elements'] : []),

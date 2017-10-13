@@ -17,8 +17,8 @@ import jwt from 'jsonwebtoken'
 import fetch from 'node-fetch'
 import React from 'react'
 import { renderToString, renderToStaticMarkup } from 'react-dom/server'
-// import { ServerStyleSheet } from 'styled-components'
-import { extractCritical } from 'emotion-server'
+import { ServerStyleSheet } from 'styled-components'
+// import { extractCritical } from 'emotion-server'
 import PrettyError from 'pretty-error'
 import App from './components/App'
 import Html from './components/Html'
@@ -159,21 +159,20 @@ app.get('*', async (req, res, next) => {
 
     const data = { ...route }
 
-    data.children = renderToString(<App context={context}>{route.component}</App>)
+    // data.children = renderToString(<App context={context}>{route.component}</App>)
+    // const emotion = extractCritical(data.children)
 
-    const emotion = extractCritical(data.children)
+    const sheet = new ServerStyleSheet()
+    data.children = renderToString(
+      sheet.collectStyles(<App context={context}>{route.component}</App>)
+    )
 
-    // const sheet = new ServerStyleSheet()
-    // data.children = renderToString(
-    //   sheet.collectStyles(<App context={context}>{route.component}</App>)
-    // )
-
+    data.styleElement = sheet.getStyleElement()
     // data.styleTags = sheet.getStyleTags()
-    // data.styleElement = sheet.getStyleElement()
     // const ss = sheet.instance.tags.map(tag => tag.concatenateCSS())
 
-    data.styles = [{ id: 'css', cssText: [...css, emotion.css].join('') }]
-    // data.styles = [{ id: 'css', cssText: [...css].join('') }]
+    // data.styles = [{ id: 'css', cssText: [...css, emotion.css].join('') }]
+    data.styles = [{ id: 'css', cssText: [...css].join('') }]
 
     data.scripts = [assets.vendor.js]
     if (route.chunks) {

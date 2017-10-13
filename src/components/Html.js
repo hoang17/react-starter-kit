@@ -35,7 +35,7 @@ class Html extends React.Component {
   }
 
   render() {
-    const { title, description, styles, scripts, app, children } = this.props
+    const { title, description, styles, scripts, app, children, styleElement } = this.props
     return (
       <html className="no-js" lang="en">
         <head>
@@ -55,6 +55,7 @@ class Html extends React.Component {
               dangerouslySetInnerHTML={{ __html: style.cssText }}
             />
           ))}
+          {styleElement}
         </head>
         <body>
           <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
