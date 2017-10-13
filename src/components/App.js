@@ -10,7 +10,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { ThemeProvider } from 'emotion-theming'
+import color from './color'
+import palx from 'palx'
 // import { ThemeProvider } from 'styled-components'
+
+export const font = `-apple-system, BlinkMacSystemFont, sans-serif`
+export const monospace = '"SF Mono", "Roboto Mono", Menlo, monospace'
+
+const palette = palx('#07c')
+
+const flattened = Object.keys(palette)
+  .reduce((a, key) => {
+    const value = palette[key]
+    if (Array.isArray(value)) {
+      a[key] = value[5]
+      value.forEach((val, i) => {
+        a[key + i] = val
+      })
+    } else {
+      a[key] = value
+    }
+    return a
+  }, {})
+
+export const colors = Object.assign({}, flattened, {
+  black: '#000',
+  white: '#fff'
+})
+
+// console.log(colors);
 
 const ContextType = {
   // Enables critical path CSS rendering
@@ -62,7 +90,13 @@ class App extends React.PureComponent {
       borderColor: '#BF67AD',
       white: '#f8f9fa',
       purple: '#8c81d8',
-      gold: '#ffd43b'
+      gold: '#ffd43b',
+      colors
+      // colors: {
+      //   black: '#111',
+      //   blue: '#07c',
+      //   gray1: "#f8f9f9",
+      // }
     }
     // NOTE: If you need to add or modify header, footer etc. of the app,
     // please do that inside the Layout component.
