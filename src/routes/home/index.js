@@ -1,5 +1,5 @@
 import React from 'react'
-import Build from './Build'
+import Build from '../../components/Build'
 // import Home from './Home'
 // import Layout from '../../components/Layout'
 

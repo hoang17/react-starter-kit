@@ -1,19 +1,11 @@
 import React from 'react'
 // import styled from 'styled-components'
-import { css } from 'emotion'
+import { css, injectGlobal } from 'emotion'
 import styled from 'react-emotion'
 const PropTypes = require('prop-types')
 import { space, width, fontSize, color } from 'styled-system'
-
-const Box = styled.div`
-  padding: 32px
-  background-color: #eee
-  border: 1px solid ${props => props.theme.gold}
-  ${space}
-  ${width}
-  ${fontSize}
-  ${color}
-`
+import { normalize } from 'polished'
+injectGlobal`${normalize()}`
 
 const flexCenter = css`
   display: flex
@@ -24,6 +16,16 @@ const flexCenter = css`
 const flexWrap = props => css`
   flex-wrap: ${props.wrap ? 'wrap' : 'nowrap'}
 `
+
+const Box = styled.div`
+  padding: 32px
+  background-color: #eee
+  border: 1px solid ${props => props.theme.gold}
+  ${space}
+  ${width}
+  ${fontSize}
+  ${color}
+`
 const Header = styled.div`
   ${flexCenter}
   ${flexWrap}
@@ -33,7 +35,23 @@ const Header = styled.div`
   border: 1px solid ${props => props.theme.gold}
   font-size: ${props => props.fontSize}px
 `
-
+const Link = styled.a`
+  color: #000
+  text-decoration: underline
+  cursor: pointer
+  &::before {
+    content: '💩'
+  }
+  &:after {
+    content: '🍺'
+  }
+  &:hover {
+    opacity: .2
+    &:before, &:after {
+      content: '😻'
+    }
+  }
+`
 const Emotion = (props) => {
   return ([
     <div css={`
@@ -48,8 +66,10 @@ const Emotion = (props) => {
     <Header wrap={1} {...props}>React.js News :D~</Header>,
     <Box width={1/2}>width: 50%</Box>,
     <Box fontSize={3}>font-size: 20px</Box>,
-    <Box m={2}>margin: 16px</Box>,
-    <Box p={4}>padding: 32px</Box>,
+    <Box m={3}>margin: 16px</Box>,
+    <Box p={4}>
+      <Link>padding: 32px
+        </Link></Box>,
     <Box color='tomato'>color: tomato</Box>,
     <Box color='blue'>color: tomato</Box>,
     <Box color='lime'>color: tomato</Box>,
