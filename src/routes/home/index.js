@@ -15,7 +15,7 @@ async function action({ fetch }) {
     chunks: ['home'],
     title: 'Home',
     component: (
-      <Build />
+      <Build fontSize={30} />
       // <Layout>
       //   <Home news={data.news} />
       // </Layout>
