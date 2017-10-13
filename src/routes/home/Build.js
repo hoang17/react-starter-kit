@@ -23,17 +23,18 @@ const ColumnCenteredBox = styled.div`
   ${flexWrap}
 `
 const Box = styled.div`
+  ${flexCenter}
   ${flexWrap}
   padding: 32px
   background-color: #eee
-  font-size: ${props => props.fontSize}px;
+  font-size: ${props => props.fontSize}px
 `
 
 const Build = (props) => {
   return ([
     <div css={`
       ${flexCenter}
-      background-color: #8c81d8
+      background-color: papayawhip
       border-radius: 4px
       color: blue
       font-size: ${props.fontSize}px
@@ -42,7 +43,7 @@ const Build = (props) => {
       }
     `}>
       This will be blue until hovered.</div>,
-    <Box wrap css={flexCenter} {...props}>React.js News :D~</Box>
+    <Box wrap {...props}>React.js News :D~</Box>
   ])
 }
 
