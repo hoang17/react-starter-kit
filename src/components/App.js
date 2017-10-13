@@ -9,6 +9,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { ThemeProvider } from 'emotion-theming'
 
 const ContextType = {
   // Enables critical path CSS rendering
@@ -52,9 +53,20 @@ class App extends React.PureComponent {
   }
 
   render() {
+    const theme = {
+      fg: 'palevioletred',
+    	bg: 'white',
+      main: 'mediumseagreen',
+      borderRadius: '50%',
+      borderColor: '#BF67AD',
+      white: '#f8f9fa',
+      purple: '#8c81d8',
+      gold: '#ffd43b'
+    }
     // NOTE: If you need to add or modify header, footer etc. of the app,
     // please do that inside the Layout component.
-    return React.Children.only(this.props.children)
+    // return React.Children.only(this.props.children)
+    return (<ThemeProvider theme={theme}>{this.props.children}</ThemeProvider>)
   }
 }
 

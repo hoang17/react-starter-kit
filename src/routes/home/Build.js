@@ -3,7 +3,6 @@ import { css } from 'emotion'
 import styled from 'react-emotion'
 // import styled from 'styled-components'
 
-// Define a class
 const flexCenter = css`
   display: flex
   justify-content: center
@@ -13,20 +12,12 @@ const flexCenter = css`
 const flexWrap = props => css`
   flex-wrap: ${props.wrap ? 'wrap' : 'nowrap'}
 `
-// Use in styled and the css prop
-const FlexCenterBox = styled.div`
-  ${flexCenter}
-`
-// Compose with multiple classes
-const ColumnCenteredBox = styled.div`
-  ${flexCenter}
-  ${flexWrap}
-`
 const Box = styled.div`
   ${flexCenter}
   ${flexWrap}
   padding: 32px
   background-color: #eee
+  border: 1px solid ${props => props.theme.gold}
   font-size: ${props => props.fontSize}px
 `
 
@@ -43,7 +34,7 @@ const Build = (props) => {
       }
     `}>
       This will be blue until hovered.</div>,
-    <Box wrap {...props}>React.js News :D~</Box>
+    <Box wrap={1} {...props}>React.js News :D~</Box>
   ])
 }
 
