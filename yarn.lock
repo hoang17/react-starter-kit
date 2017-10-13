@@ -8771,7 +8771,7 @@ styled-components@^2.2.1:
     supports-color "^3.2.3"
 
 "styled-system@file:../styled-system":
-  version "1.0.9"
+  version "1.0.10"
   dependencies:
     prop-types "^15.6.0"
 

@@ -34,7 +34,7 @@ const Header = styled.div`
   font-size: ${props => props.fontSize}px
 `
 
-const Build = (props) => {
+const Emotion = (props) => {
   return ([
     <div css={`
       ${flexCenter}
@@ -57,4 +57,4 @@ const Build = (props) => {
   ])
 }
 
-export default Build
+export default Emotion
