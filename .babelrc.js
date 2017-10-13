@@ -16,8 +16,8 @@ module.exports = {
     "react"
   ],
   "plugins": [
-    // "emotion",
-    "babel-plugin-styled-components"
+    "emotion",
+    // "babel-plugin-styled-components"
   ],
   "ignore": ["node_modules", "build"]
 }
