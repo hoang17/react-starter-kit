@@ -100,6 +100,7 @@ const config = {
             // Experimental ECMAScript proposals
             // https://babeljs.io/docs/plugins/#presets-stage-x-experimental-presets-
             'stage-2',
+            'stage-3',
             // Flow
             // https://github.com/babel/babel/tree/master/packages/babel-preset-flow
             'flow',
@@ -108,6 +109,8 @@ const config = {
             ['react', { development: isDebug }],
           ],
           plugins: [
+            // "emotion",
+            "babel-plugin-styled-components",
             // Treat React JSX elements as value types and hoist them to the highest scope
             // https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-constant-elements
             ...(isDebug ? ['transform-react-constant-elements'] : []),

@@ -7,10 +7,10 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import serialize from 'serialize-javascript';
-import config from '../config';
+import React from 'react'
+import PropTypes from 'prop-types'
+import serialize from 'serialize-javascript'
+import config from '../config'
 
 /* eslint-disable react/no-danger */
 
@@ -27,15 +27,16 @@ class Html extends React.Component {
     scripts: PropTypes.arrayOf(PropTypes.string.isRequired),
     app: PropTypes.object, // eslint-disable-line
     children: PropTypes.string.isRequired,
-  };
+  }
 
   static defaultProps = {
     styles: [],
     scripts: [],
-  };
+  }
 
   render() {
-    const { title, description, styles, scripts, app, children } = this.props;
+    // const { title, description, styles, scripts, app, children } = this.props
+    const { title, description, styles, scripts, app, children, styleElement } = this.props
     return (
       <html className="no-js" lang="en">
         <head>
@@ -55,6 +56,7 @@ class Html extends React.Component {
               dangerouslySetInnerHTML={{ __html: style.cssText }}
             />
           ))}
+          {styleElement}
         </head>
         <body>
           <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
@@ -66,9 +68,9 @@ class Html extends React.Component {
             <script
               dangerouslySetInnerHTML={{
                 __html:
-                  'window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;' +
+                  'window.ga=function(){ga.q.push(arguments)}ga.q=[]ga.l=+new Date' +
                   `ga('create','${config.analytics
-                    .googleTrackingId}','auto');ga('send','pageview')`,
+                    .googleTrackingId}','auto')ga('send','pageview')`,
               }}
             />
           )}
@@ -81,8 +83,8 @@ class Html extends React.Component {
           )}
         </body>
       </html>
-    );
+    )
   }
 }
 
-export default Html;
+export default Html
