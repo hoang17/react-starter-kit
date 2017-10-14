@@ -1,25 +1,12 @@
 import React from 'react'
-import { css, injectGlobal } from 'emotion'
+import { css } from 'emotion'
 import styled from 'react-emotion'
-const PropTypes = require('prop-types')
 import { space, width, fontSize, color } from 'styled-system'
 import reset from './reset'
+import Toolbar from './Toolbar'
 
-const Toolbar = styled.div`
-  position: fixed
-  width: 100%
-  height: 48px
-  background-color: #eee
-  border: 1px solid ${props => props.theme.gold}
-  transition: .3s cubic-bezier(.25,.8,.5,1);
-  ${space}
-  ${width}
-  ${fontSize}
-  ${color}
-`
 const Navbar = styled.div`
   position: fixed
-  width: 300px
   top: 0
   left: 0
   z-index: 3
@@ -27,7 +14,8 @@ const Navbar = styled.div`
   background-color: #eee
   will-change: transform
   border: 1px solid ${props => props.theme.gold}
-  transition: .3s cubic-bezier(.25,.8,.5,1)
+  transition: .3s cubic-bezier(.25,.8,.5,1);
+  ${width}
 `
 const Sidebar = styled.div`
   position: fixed
@@ -39,10 +27,7 @@ const Sidebar = styled.div`
   background-color: #eee
   transition: .3s cubic-bezier(.25,.8,.5,1);
   border: 1px solid ${props => props.theme.gold}
-  ${space}
   ${width}
-  ${fontSize}
-  ${color}
 `
 const Canvas = styled.div`
   padding: 48px ${props => props.pr} 0 300px;
@@ -74,15 +59,15 @@ const Link = styled.a`
 `
 
 const Build = (props) => {
-  const width = "26em"
+  const left = 300
+  const right = "28em"
   return ([
-    <Toolbar color='blue' pl={300} pr={width}>
-      <Link>Toolbar</Link></Toolbar>,
-    <Navbar>
+    <Toolbar pl={left} pr={right} />,
+    <Navbar width={left}>
       <Link>Navbar</Link></Navbar>,
-    <Sidebar width={width}>
+    <Sidebar width={right}>
       <Link>Sidebar</Link></Sidebar>,
-    <Canvas pr={width}>
+    <Canvas pr={right}>
       <Link>Canvas</Link></Canvas>
   ])
 }

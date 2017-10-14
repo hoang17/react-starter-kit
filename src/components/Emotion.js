@@ -2,7 +2,6 @@ import React from 'react'
 // import styled from 'styled-components'
 import { css, injectGlobal } from 'emotion'
 import styled from 'react-emotion'
-const PropTypes = require('prop-types')
 import { space, width, fontSize, color } from 'styled-system'
 import { normalize } from 'polished'
 injectGlobal`${normalize()}`
@@ -63,7 +62,7 @@ const Emotion = (props) => {
         color: green
       }
     `}>This will be blue until hovered.</div>,
-    <Header wrap={1} {...props}>React.js News :D~</Header>,
+    <Header wrap {...props}>React.js News :D~</Header>,
     <Box width={1/2}>width: 50%</Box>,
     <Box fontSize={3}>font-size: 20px</Box>,
     <Box m={3}>margin: 16px</Box>,
