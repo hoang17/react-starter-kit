@@ -97,7 +97,7 @@ const ExpandHeader = styled.div`
   cursor: pointer
   align-items: center
   position: relative
-  padding: 12px 18px
+  padding: 10px 15px
   background-color: #fafafa
   border-bottom: 1px solid #d1d1d1
 `
