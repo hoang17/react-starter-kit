@@ -45,20 +45,24 @@ const Button = styled.button`
   color: ${props => props.disabled ? 'rgba(0,0,0,.26)' : 'rgba(0,0,0,.54)' };
   pointer-events: ${props => props.disabled ? 'none' : 'auto' };
 `
-
+const Icon = styled.i`
+  font-size: ${props => props.fa ? '16px':'18px'}!important;
+  color: inherit
+  align-items: center
+  display: inline-flex
+  justify-content: center
+  vertical-align: middle
+  transition: .3s cubic-bezier(.25,.8,.5,1)
+`
 const BtnIcon = props => {
-  const className = props.fa ? `fa fa-${props.fa}` : `material-icons`
-  const Icon = styled.i`
-    font-size: ${props.fa ? '16px':'18px'}!important;
-    color: inherit
-    align-items: center
-    display: inline-flex
-    justify-content: center
-    vertical-align: middle
-    transition: .3s cubic-bezier(.25,.8,.5,1)
-  `
   return (
-    <Button {...props}><Icon className={className}>{props.ma}</Icon></Button>
+    <Button {...props}>
+      <Icon
+        className={props.fa ? `fa fa-${props.fa}` : `material-icons`}
+        {...props}>
+        {props.ma}
+      </Icon>
+    </Button>
   )
 }
 
