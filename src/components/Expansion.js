@@ -20,7 +20,7 @@ export const Expansion = styled.ul`
   border-bottom: 1px solid #d1d1d1
 `
 const Label = styled.div`
-  font-size: 13px
+  font-size: 12px
   flex: 1 1 auto
 `
 const Icon = styled.i`
@@ -47,11 +47,11 @@ const ExpandBody = styled.div`
 `
 
 const ExpandPanel = styled.li`
-  border-top: 1px solid rgba(0,0,0,.12)
-  color: rgba(0,0,0,.87)
-  flex: 1 0 100%
-  outline: none
-  transition: ${duration}ms cubic-bezier(.25,.8,.5,1)
+  outline: none;
+  flex: 1 1 100%;
+  color: rgba(0,0,0,.87);
+  border-top: 1px solid rgba(0,0,0,.12);
+  transition: ${duration}ms cubic-bezier(.25,.8,.5,1);
 `
 
 const Fade = ({ in: inProp, children }) => (

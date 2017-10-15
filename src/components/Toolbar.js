@@ -52,7 +52,7 @@ const Icon = styled.i`
   vertical-align: middle
   transition: .3s cubic-bezier(.25,.8,.5,1)
 `
-const BtnIcon = props => {
+const ButtonIcon = props => {
   return (
     <Button {...props}>
       <Icon
@@ -67,19 +67,19 @@ const BtnIcon = props => {
 export default props => {
   return (
     <Toolbar {...props}>
-      <BtnIcon ma="menu" />
-      <BtnIcon fa="save" disabled />
-      <BtnIcon fa="copy" />
-      <BtnIcon fa="cut" />
-      <BtnIcon ma="content_paste" />
-      <BtnIcon fa="clone" />
-      <BtnIcon fa="trash-o" />
-      <BtnIcon ma="undo" />
-      <BtnIcon ma="redo" />
-      <BtnIcon ma="visibility" />
-      <BtnIcon fa="cube" />
-      <BtnIcon fa="cubes" />
-      <BtnIcon ma="menu" right />
+      <ButtonIcon ma="menu" />
+      <ButtonIcon fa="save" disabled />
+      <ButtonIcon fa="copy" />
+      <ButtonIcon fa="cut" />
+      <ButtonIcon ma="content_paste" />
+      <ButtonIcon fa="clone" />
+      <ButtonIcon fa="trash-o" />
+      <ButtonIcon ma="undo" />
+      <ButtonIcon ma="redo" />
+      <ButtonIcon ma="visibility" />
+      <ButtonIcon fa="cube" />
+      <ButtonIcon fa="cubes" />
+      <ButtonIcon ma="menu" right />
     </Toolbar>
   )
 }
