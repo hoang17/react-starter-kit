@@ -13,7 +13,7 @@ const Canvas = styled.div`
   min-height: 100vh
   height: 100%
   outline: none
-  background-color: #eee
+  background-color: #fafafa
   will-change: margin-left
   border: 1px solid ${props => props.theme.gold}
   transition: margin 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);

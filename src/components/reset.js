@@ -1,7 +1,7 @@
 import { injectGlobal } from 'emotion'
 
 injectGlobal`
-  html, body {
+  html,body,ul {
     margin: 0
     padding: 0
     box-sizing: border-box
@@ -16,7 +16,7 @@ injectGlobal`
     word-spacing: 0.05em
     line-height: 1.5
   }
-  ol, ul {
+  ol,ul {
     list-style: none
   }
 `

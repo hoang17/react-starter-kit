@@ -9,7 +9,7 @@ const Navbar = styled.div`
   left: 0
   z-index: 3
   height: 100%
-  background-color: #eee
+  background-color: #f5f5f5
   will-change: transform
   border: 1px solid ${props => props.theme.gold}
   transition: .3s cubic-bezier(.25,.8,.5,1);
