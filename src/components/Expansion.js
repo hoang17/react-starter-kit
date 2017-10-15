@@ -20,7 +20,8 @@ export const Expansion = styled.ul`
   border-bottom: 1px solid #d1d1d1
 `
 const Label = styled.div`
-  flex: 1 1 auto;
+  font-size: 13px
+  flex: 1 1 auto
 `
 const Icon = styled.i`
   font-size: 20px
@@ -30,7 +31,7 @@ const ExpandHeader = styled.div`
   cursor: pointer
   text-transform: uppercase
   font-weight: 500
-  height: 49px
+  height: 32px
   display: flex
   cursor: pointer
   align-items: center
