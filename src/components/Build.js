@@ -1,8 +1,6 @@
 import React from 'react'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { space, width, fontSize, color } from 'styled-system'
-// import { Provider, Heading, Button } from 'rebass'
 import reset from './reset'
 import Toolbar from './Toolbar'
 import Navbar from './Navbar'
@@ -17,7 +15,7 @@ const Canvas = styled.div`
   will-change: margin-left
   border: 1px solid ${props => props.theme.gold}
   transition: margin 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
-  ${width}
+  ${props => props.width && 'width:'+props.width}
 `
 
 const Link = styled.a`
@@ -39,7 +37,7 @@ const Link = styled.a`
 `
 
 export default props => {
-  const left = 300
+  const left = "300px"
   const right = "28em"
   return ([
     <Toolbar pl={left} pr={right} />,

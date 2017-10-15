@@ -2,7 +2,6 @@ import React from 'react'
 // import styled from 'styled-components'
 import { css, injectGlobal } from 'emotion'
 import styled from 'react-emotion'
-import { space, width, fontSize, color } from 'styled-system'
 import { normalize } from 'polished'
 injectGlobal`${normalize()}`
 
@@ -20,10 +19,6 @@ const Box = styled.div`
   padding: 32px
   background-color: #eee
   border: 1px solid ${props => props.theme.gold}
-  ${space}
-  ${width}
-  ${fontSize}
-  ${color}
 `
 const Header = styled.div`
   ${flexCenter}

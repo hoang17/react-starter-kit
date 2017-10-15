@@ -1,7 +1,6 @@
 import React from 'react'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { space, width, fontSize, color } from 'styled-system'
 import { Grid, Cell } from "styled-css-grid"
 import { Expansion, Expand } from './Expansion'
 
@@ -15,7 +14,7 @@ const Sidebar = styled.div`
   will-change: transform
   border-left: 1px solid #d1d1d1
   transition: .3s cubic-bezier(.25,.8,.5,1);
-  ${width}
+  ${({width}) => width && `width:${width}`}
   background-color: #f5f5f5
 `
 const FieldSet = styled.div`

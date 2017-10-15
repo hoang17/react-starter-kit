@@ -1,7 +1,6 @@
 import React from 'react'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { space, width, fontSize, color } from 'styled-system'
 
 const Navbar = styled.div`
   position: fixed
@@ -13,7 +12,7 @@ const Navbar = styled.div`
   will-change: transform
   border: 1px solid ${props => props.theme.gold}
   transition: .3s cubic-bezier(.25,.8,.5,1);
-  ${width}
+  ${props => props.width && 'width:'+props.width}  
 `
 
 export default props => {

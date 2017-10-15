@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { space, width, fontSize, color } from 'styled-system'
 import { observable, computed, extendObservable } from "mobx"
 import { observer } from 'mobx-react'
 

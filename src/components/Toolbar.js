@@ -1,7 +1,6 @@
 import React from 'react'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { space, width, fontSize, color } from 'styled-system'
 
 const shawdow = css`
   box-shadow: 0 1px 3px rgba(0,0,0,.2),0 1px 1px rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12)!important
@@ -16,10 +15,9 @@ const Toolbar = styled.div`
   will-change: padding-left, padding-right
   transition: .3s cubic-bezier(.25,.8,.5,1);
   ${shawdow}
-  ${space}
-  ${width}
-  ${fontSize}
-  ${color}
+  ${({width}) => width && `width:${width}`}
+  ${({pl}) => pl && `padding-left:${pl}`}
+  ${({pr}) => pr && `padding-right:${pr}`}
 `
 const Button = styled.button`
   cursor: pointer
