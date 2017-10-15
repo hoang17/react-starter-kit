@@ -18,7 +18,10 @@ const Sidebar = styled.div`
   background-color: #f5f5f5
 `
 const FieldSet = styled.div`
-  display: flex
+  display: flex;
+  &:not(:last-child) {
+    margin-bottom: .8rem
+  }
 `
 const Label = styled.label`
   color: #363636
@@ -33,10 +36,6 @@ const Box = styled.div`
   max-width: ${({width}) => width ? width*100:100}%
   &:not(:last-child) {
     margin-right: 3px
-    margin-bottom: 0.75rem
-  }
-  &:not(:last-child) {
-    margin-bottom: 0.75rem
   }
 `
 const Field = props => {
@@ -52,7 +51,7 @@ const Field = props => {
     background-clip: padding-box
     border: 1px solid rgba(0,0,0,.15);
     border-radius: 2px
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     &:focus {
       color: #464a4c
       background-color: #fff

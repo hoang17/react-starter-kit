@@ -7,34 +7,6 @@ import { Transition } from 'react-transition-group'
 
 const duration = 300
 
-const defaultStyle = {
-  transition: `opacity ${duration}ms ease-in-out`,
-  opacity: 0,
-  padding: 20,
-  display: 'inline-block',
-  backgroundColor: '#8787d8'
-}
-
-const transitionStyles = {
-  entering: { opacity: 1 },
-  entered: { opacity: 1 },
-  exiting: { opacity: 0 },
-  exited: { opacity: 0 },
-}
-
-const Fade = ({ in: inProp }) => (
-  <Transition in={inProp} timeout={duration}>
-    {(state) => (
-      <div style={{
-        ...defaultStyle,
-        ...transitionStyles[state]
-      }}>
-        I'm A fade Transition!
-      </div>
-    )}
-  </Transition>
-)
-
 export const Expansion = styled.ul`
   display: -webkit-box
   display: -ms-flexbox
@@ -51,8 +23,8 @@ const Label = styled.div`
   flex: 1 1 auto;
 `
 const Icon = styled.i`
-  color: rgba(0,0,0,.54)
   font-size: 20px
+  color: rgba(0,0,0,.54);
 `
 const ExpandHeader = styled.div`
   cursor: pointer
@@ -78,23 +50,36 @@ const ExpandPanel = styled.li`
   color: rgba(0,0,0,.87)
   flex: 1 0 100%
   outline: none
-  transition: .3s cubic-bezier(.25,.8,.5,1)
+  transition: ${duration}ms cubic-bezier(.25,.8,.5,1)
 `
+
+const Fade = ({ in: inProp, children }) => (
+  <Transition
+    in={inProp}
+    timeout={duration}
+    onEnter={(el, isAppearing) => {
+      el.style.height = 0
+      setTimeout(() => (el.style.height = el.height), 10)
+    }}
+    onEntered={(el, isAppearing) => {
+      el.style.height = 'auto'
+    }}
+    onExit={(el, isAppearing) => {
+      el.height = el.style.height = `${el.clientHeight}px`
+      setTimeout(() => (el.style.height = 0), 10)
+    }}>
+    <ExpandBody>{children}</ExpandBody>
+  </Transition>
+)
 
 @observer export class Expand extends Component {
   active = true
-  height = 'auto'
 
   constructor(props) {
     super(props)
     extendObservable(this, {
       active: this.active,
-      height: this.height,
     })
-  }
-
-  componentDidMount(){
-    this.height = this.refs.expandBody.clientHeight + 'px'
   }
 
   render() {
@@ -102,12 +87,11 @@ const ExpandPanel = styled.li`
       <ExpandPanel>
         <ExpandHeader onClick={e => this.active = !this.active}>
           <Label>{this.props.title}</Label>
-          <Icon className="material-icons">keyboard_arrow_down</Icon>
+          <Icon css={this.active && 'transform: rotate(-180deg)'} className="material-icons">keyboard_arrow_down</Icon>
         </ExpandHeader>
-        <Fade in={this.active} />
-        <ExpandBody style={{height: this.active ? this.height : 0}}>
-          <div ref="expandBody" css={`padding:12px 10px`}>{this.props.children}</div>
-        </ExpandBody>
+        <Fade in={this.active}>
+          <div css="padding:12px 10px">{this.props.children}</div>
+        </Fade>
       </ExpandPanel>
     )
   }
