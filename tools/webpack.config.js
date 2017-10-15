@@ -99,6 +99,8 @@ const config = {
             ],
             // Experimental ECMAScript proposals
             // https://babeljs.io/docs/plugins/#presets-stage-x-experimental-presets-
+            'stage-0',
+            'stage-1',
             'stage-2',
             'stage-3',
             // Flow
