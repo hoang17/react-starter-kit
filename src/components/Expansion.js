@@ -3,6 +3,37 @@ import { css } from 'emotion'
 import styled from 'react-emotion'
 import { observable, computed, extendObservable } from "mobx"
 import { observer } from 'mobx-react'
+import { Transition } from 'react-transition-group'
+
+const duration = 300
+
+const defaultStyle = {
+  transition: `opacity ${duration}ms ease-in-out`,
+  opacity: 0,
+  padding: 20,
+  display: 'inline-block',
+  backgroundColor: '#8787d8'
+}
+
+const transitionStyles = {
+  entering: { opacity: 1 },
+  entered: { opacity: 1 },
+  exiting: { opacity: 0 },
+  exited: { opacity: 0 },
+}
+
+const Fade = ({ in: inProp }) => (
+  <Transition in={inProp} timeout={duration}>
+    {(state) => (
+      <div style={{
+        ...defaultStyle,
+        ...transitionStyles[state]
+      }}>
+        I'm A fade Transition!
+      </div>
+    )}
+  </Transition>
+)
 
 export const Expansion = styled.ul`
   display: -webkit-box
@@ -39,7 +70,7 @@ const ExpandHeader = styled.div`
 const ExpandBody = styled.div`
   overflow: hidden
   background-color: #eee
-  transition: .3s cubic-bezier(.25,.8,.5,1);
+  transition: ${duration}ms cubic-bezier(.25,.8,.5,1);
 `
 
 const ExpandPanel = styled.li`
@@ -73,6 +104,7 @@ const ExpandPanel = styled.li`
           <Label>{this.props.title}</Label>
           <Icon className="material-icons">keyboard_arrow_down</Icon>
         </ExpandHeader>
+        <Fade in={this.active} />
         <ExpandBody style={{height: this.active ? this.height : 0}}>
           <div ref="expandBody" css={`padding:12px 10px`}>{this.props.children}</div>
         </ExpandBody>
