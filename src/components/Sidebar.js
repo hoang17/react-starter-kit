@@ -10,6 +10,8 @@ const Sidebar = styled.div`
   right: 0
   z-index: 3
   height: 100%
+  overflow-y: auto
+  padding-bottom: 100px
   user-select: none
   will-change: transform
   background-color: #f5f5f5;
@@ -189,7 +191,7 @@ export default props => {
   return (
     <Sidebar {...props}>
       <Expansion>
-        <Expand title="Text" expand={true}>
+        <Expand title="Text" expand={1}>
           <FieldSet>
             <Field width={2/3} label="Font Family" />
             <Field width={1/3} label="Font Size" />
