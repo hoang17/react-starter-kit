@@ -19,6 +19,7 @@ const Sidebar = styled.div`
 `
 const FieldSet = styled.div`
   display: flex;
+  align-items: center;
   &:not(:last-child) {
     margin-bottom: .8rem
   }
@@ -30,6 +31,11 @@ const Label = styled.label`
   font-weight: 600
   margin-bottom: 0.4em
   text-transform: uppercase
+  ${props => props.width && 'flex: 1 1 '+props.width*100+'%;'}
+  width: ${props => props.width ? props.width*100 : 100}%;
+  &:not(:last-child) {
+    margin-right: 0px
+  }
 `
 const Box = styled.div`
   flex: 1 1 ${({width}) => width ? width*100+'%':'auto'}
@@ -47,7 +53,7 @@ const Button = styled.button`
   align-items: center
   display: inline-flex
   flex: 1 1 auto
-  font-size: 1rem
+  font-size: 14px
   outline: 0
   background-color: white;
   border-radius: 2px
@@ -88,7 +94,8 @@ const Icon = styled.i`
 `
 const Input = styled.input`
   display: block
-  width: 100%
+  ${props => props.width && 'flex: 1 1 '+props.width*100+'%;'}
+  width: ${props => props.width ? props.width*100 : 100}%;
   height: 28px
   padding: .3rem .4rem
   font-size: 13px
@@ -99,6 +106,9 @@ const Input = styled.input`
   border: 1px solid rgba(0,0,0,.15);
   border-radius: 2px
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  &:not(:last-child) {
+    margin-right: 5px
+  }
   &:focus {
     color: #464a4c
     background-color: #fff
@@ -108,7 +118,8 @@ const Input = styled.input`
 `
 const Select = styled.select`
   display: block
-  width: 100%
+  ${props => props.width && 'flex: 1 1 '+props.width*100+'%;'}
+  width: ${props => props.width ? props.width*100 : 100}%;
   height: 28px
   padding: .3rem .4rem
   font-size: 13px
@@ -178,7 +189,7 @@ export default props => {
   return (
     <Sidebar {...props}>
       <Expansion>
-        <Expand title="Text">
+        <Expand title="Text" expand={true}>
           <FieldSet>
             <Field width={2/3} label="Font Family" />
             <Field width={1/3} label="Font Size" />
@@ -221,8 +232,8 @@ export default props => {
         </Expand>
         <Expand title="Background">
           <FieldSet>
-            <Field width={2/3} label="Color" />
-            <Field width={1/3} label="Gradient" />
+            <Field width={1/2} label="Color" />
+            <Field width={1/2} label="Gradient" />
           </FieldSet>
           <FieldSet>
             <SelectField label="Select Image">
@@ -243,6 +254,94 @@ export default props => {
             <SelectField width={1/3} label="Size">
               <option>Size</option>
             </SelectField>
+          </FieldSet>
+        </Expand>
+        <Expand title="Layout">
+          <FieldSet>
+            <Label width={2/8} css='margin:0'>Display</Label>
+            <Select width={6/8} label="Display">
+              <option>--</option>
+              <option>Block</option>
+              <option>Inline</option>
+              <option>Inline Block</option>
+              <option>Flex</option>
+              <option>Inline Flex</option>
+            </Select>
+          </FieldSet>
+          <FieldSet>
+            <Label width={2/8} css='margin:0'>Dimensions</Label>
+            <Input width={3/8} placeholder="Width" />
+            <Input width={3/8} placeholder="Height" />
+          </FieldSet>
+          <FieldSet>
+            <Label width={2/8} css='margin:0'>Magin</Label>
+            <Input width={6/8} placeholder="Margin" />
+          </FieldSet>
+          <FieldSet>
+            <Label width={2/8} css='margin:0'>Padding</Label>
+            <Input width={6/8} placeholder="Padding" />
+          </FieldSet>
+          <FieldSet>
+            <Label width={2/8} css='margin:0'>Transform</Label>
+            <Input width={6/8} placeholder="Transform" />
+          </FieldSet>
+          {/* <FieldSet>
+            <Label width={2/8} css='margin:0'>Min</Label>
+            <Input width={3/8} placeholder="Width" />
+            <Input width={3/8} placeholder="Height" />
+            <Label width={2/10} css='margin:0'>Min Width</Label>
+            <Input width={3/10} placeholder="Width" />
+            <Label width={2/10} css='margin:0'>Min Height</Label>
+            <Input width={3/10} placeholder="Height" />
+          </FieldSet>
+          <FieldSet>
+            <Label width={2/8} css='margin:0'>Max</Label>
+            <Input width={3/8} placeholder="Width" />
+            <Input width={3/8} placeholder="Height" />
+            <Label width={2/10} css='margin:0'>Max Width</Label>
+            <Input width={3/10} placeholder="Width" />
+            <Label width={2/10} css='margin:0'>Max Height</Label>
+            <Input width={3/10} placeholder="Height" />
+          </FieldSet> */}
+        </Expand>
+        <Expand title="Border">
+          <FieldSet>
+            <ButtonGroup label="Style">
+              <Button>Solid</Button>
+              <Button>Dotted</Button>
+              <Button>Dashed</Button>
+            </ButtonGroup>
+          </FieldSet>
+          <FieldSet>
+            <ButtonGroup label="Sides">
+              <Button>Top</Button>
+              <Button>Right</Button>
+              <Button>Bottom</Button>
+              <Button>Left</Button>
+            </ButtonGroup>
+          </FieldSet>
+          <FieldSet>
+            <Field width={1/3} label="Width" />
+            <Field width={1/3} label="Color" />
+            <Field width={1/3} label="Radius" />
+          </FieldSet>
+        </Expand>
+        <Expand title="Position">
+          <FieldSet>
+            <Label width={2/8} css='margin:0'>Position</Label>
+            <Select width={6/8} label="Position">
+              <option>Static</option>
+              <option>Absolute</option>
+              <option>Relative</option>
+              <option>Fixed</option>
+              <option>Sticky</option>
+            </Select>
+          </FieldSet>
+          <FieldSet>
+            <Field width={1/4} label="Top" />
+            <Field width={1/4} label="Bottom" />
+            <Field width={1/4} label="Left" />
+            <Field width={1/4} label="Right" />
           </FieldSet>
         </Expand>
       </Expansion>

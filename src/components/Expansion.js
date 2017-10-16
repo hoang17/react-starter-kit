@@ -38,11 +38,11 @@ const ExpandHeader = styled.div`
   position: relative
   padding: 10px 24px 10px 15px
   background-color: #fafafa
-  border-bottom: 1px solid #d1d1d1
 `
 const ExpandBody = styled.div`
   overflow: hidden
   background-color: #eee
+  border-top: 1px solid #d1d1d1
   transition: ${duration}ms cubic-bezier(.25,.8,.5,1);
 `
 
@@ -54,43 +54,48 @@ const ExpandPanel = styled.li`
   transition: ${duration}ms cubic-bezier(.25,.8,.5,1);
 `
 
-const Fade = ({ in: inProp, children }) => (
+const Fade = ({ in: exp, children }) => (
   <Transition
-    in={inProp}
+    in={exp}
     timeout={duration}
-    onEnter={(el, isAppearing) => {
+    onEnter={el => {
       el.style.height = 0
-      setTimeout(() => (el.style.height = el.height), 10)
+    el.style.display = ''
+      setTimeout(() => el.style.height = el.height, 10)
     }}
-    onEntered={(el, isAppearing) => {
-      el.style.height = 'auto'
-    }}
-    onExit={(el, isAppearing) => {
+    onExit={el => {
       el.height = el.style.height = `${el.clientHeight}px`
-      setTimeout(() => (el.style.height = 0), 10)
-    }}>
+      setTimeout(() => el.style.height = 0, 10)
+    }}
+    onEntered={el => el.style = ''}
+    onExited={el => el.style.display = 'none'}>
     <ExpandBody>{children}</ExpandBody>
   </Transition>
 )
 
 @observer export class Expand extends Component {
-  active = true
+  expand = true
 
   constructor(props) {
     super(props)
     extendObservable(this, {
-      active: this.active,
+      expand: this.expand,
     })
+    // this.expand = this.props.expand || false
+  }
+
+  componentDidMount(){
+    this.expand = this.props.expand || false
   }
 
   render() {
     return (
       <ExpandPanel>
-        <ExpandHeader onClick={e => this.active = !this.active}>
+        <ExpandHeader onClick={e => this.expand = !this.expand}>
           <Label>{this.props.title}</Label>
-          <Icon css={this.active && 'transform: rotate(-180deg)'} className="material-icons">keyboard_arrow_down</Icon>
+          <Icon css={this.expand && 'transform: rotate(-180deg)'} className="material-icons">keyboard_arrow_down</Icon>
         </ExpandHeader>
-        <Fade in={this.active}>
+        <Fade in={this.expand} init={this.props.expand}>
           <div css="padding:12px 10px">{this.props.children}</div>
         </Fade>
       </ExpandPanel>
