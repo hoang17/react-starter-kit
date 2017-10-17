@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { observable, computed, extendObservable } from "mobx"
+import { observe, observable, computed } from "mobx"
 import { observer } from 'mobx-react'
 import { Transition } from 'react-transition-group'
 
@@ -55,49 +55,44 @@ const ExpandPanel = styled.li`
 `
 
 @observer export class Expand extends Component {
-  constructor(props) {
-    super(props)
-    extendObservable(this, {
-      height: 'auto',
-      expand: this.props.expand,
+  @observable height = 'auto'
+  @observable expand = this.props.expand
+
+  componentDidMount(){
+    let e = this.refs.panel
+    e.style = ''
+    this.height = e.clientHeight + 1 + 'px'
+    if (!this.expand) e.style.display = 'none'
+
+    observe(this, 'expand', ({ oldValue, newValue }) => {
+      this.toggle(e)
     })
   }
 
-  componentDidMount(){
-    let el = this.refs.panel
-    el.style = ''
-    this.height = el.clientHeight + 1 + 'px'
-    if (!this.expand) el.style.display = 'none'
-  }
-
-  geStyle(){
-    return this.props.expand ? null : {height:0, display:'none'}
+  toggle(e) {
+    if (this.expand){
+      e.style.display = ''
+      e.style.height = 0
+      setTimeout(() => e.style.height = this.height, 10)
+      setTimeout(() => e.style = '', duration)
+    } else {
+      e.style.height = this.height
+      setTimeout(() => e.style.height = 0, 10)
+      setTimeout(() => e.style.display = 'none', duration)
+    }
   }
 
   render() {
     return (
       <ExpandPanel>
-        <ExpandHeader onClick={e => {
-          this.expand = !this.expand
-          let el = this.refs.panel
-          if (this.expand){
-            el.style.display = ''
-            el.style.height = 0
-            setTimeout(() => el.style.height = this.height, 10)
-            setTimeout(() => el.style = '', duration)
-          } else {
-            el.style.height = this.height
-            setTimeout(() => el.style.height = 0, 10)
-            setTimeout(() => el.style.display = 'none', duration)
-          }
-        }}>
+        <ExpandHeader onClick={e => this.expand = !this.expand}>
           <Label>{this.props.title}</Label>
           <Icon css={this.expand && 'transform: rotate(-180deg)'} className="material-icons">keyboard_arrow_down</Icon>
         </ExpandHeader>
         <div
           ref="panel"
           css={expandBodyCSS}
-          style={this.geStyle()}
+          style={this.props.expand ? null : {height:0, display:'none'}}
           >
           <div css="padding:12px 10px">{this.props.children}</div>
         </div>

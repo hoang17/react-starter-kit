@@ -19,6 +19,8 @@ module.exports = {
   ],
   "plugins": [
     "emotion",
+    "transform-decorators-legacy",
+    "transform-class-properties",
     // "babel-plugin-styled-components"
   ],
   "ignore": ["node_modules", "build"]
