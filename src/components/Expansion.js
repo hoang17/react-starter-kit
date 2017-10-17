@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { observe, observable, computed } from "mobx"
+import { observe, observable } from "mobx"
 import { observer } from 'mobx-react'
 import { Transition } from 'react-transition-group'
 
