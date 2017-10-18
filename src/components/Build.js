@@ -46,8 +46,6 @@ export default props => {
     <Sidebar width={right}>
       <Link>Sidebar</Link></Sidebar>,
     <Canvas pr={right}>
-      {/* <Heading>Hello</Heading>
-      <Button>Rebass</Button> */}
       <Link>Canvas</Link>
     </Canvas>
   ])
