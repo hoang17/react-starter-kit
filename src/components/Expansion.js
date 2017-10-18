@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { observe, observable } from "mobx"
+import { observe, observable, reaction, toJS } from "mobx"
 import { observer } from 'mobx-react'
 import { Transition } from 'react-transition-group'
 
@@ -67,6 +67,10 @@ const ExpandPanel = styled.li`
     observe(this, 'expand', ({ oldValue, newValue }) => {
       this.toggle(e)
     })
+
+    // reaction(() => toJS(this.data),
+    //   newVal => { console.log(newVal) }
+    // )
   }
 
   toggle(e) {
