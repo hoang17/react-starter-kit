@@ -7,6 +7,9 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
+if (process.env.NODE_ENV === 'production' && typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object')
+  __REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function() {}
+
 import 'whatwg-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
