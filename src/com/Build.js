@@ -50,9 +50,9 @@ export default props => {
   const pr = "28em"
   return ([
     <Toolbar pl={pl} pr={pr} />,
-    <Navbar width={pl}>
+    <Navbar w={pl}>
       <Link>Navbar</Link></Navbar>,
-    <Sidebar width={pr}>
+    <Sidebar w={pr}>
       <Link>Sidebar</Link></Sidebar>,
     <Canvas pl={pl} pr={pr}>
       <Link>Canvas</Link>
