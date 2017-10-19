@@ -62,10 +62,10 @@ const ButtonIcon = props => {
 }
 
 export default props => {
-  let { drawer } = props
+  let { leftClick, rightClick } = props
   return (
     <Toolbar {...props}>
-      <ButtonIcon ma="menu" onClick={e => drawer.left=!drawer.left} />
+      <ButtonIcon ma="menu" onClick={leftClick} />
       <ButtonIcon fa="save" disabled />
       <ButtonIcon fa="copy" />
       <ButtonIcon fa="cut" />
@@ -77,7 +77,7 @@ export default props => {
       <ButtonIcon ma="visibility" />
       <ButtonIcon fa="cube" />
       <ButtonIcon fa="cubes" />
-      <ButtonIcon ma="menu" right onClick={e => drawer.right=!drawer.right} />
+      <ButtonIcon ma="menu" right onClick={rightClick} />
     </Toolbar>
   )
 }

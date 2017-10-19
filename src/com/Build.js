@@ -5,7 +5,7 @@ import reset from './reset'
 import Toolbar from './Toolbar'
 import Navbar from './Navbar'
 import Sidebar from './Sidebar'
-import { observe, observable } from "mobx"
+import { observe, observable, computed } from "mobx"
 import { observer } from 'mobx-react'
 
 // import { space, width, fontSize, color } from 'styled-system'
@@ -48,19 +48,44 @@ const Link = styled.a`
     }
   }
 `
-@observer export default class Build extends Component {
-  @observable state = {
-    pl: "300px",
-    pr: "28em",
-    drawer: { left: true, right: true }
+
+class Drawer {
+  @observable width
+  @observable left = true
+  @observable show = true
+  constructor(width, left = true) {
+    this.width = width
+    this.left = left
   }
-  render(){
-    let { pl, pr, drawer } = this.state
+  toggle = () => {
+    this.show = !this.show
+  }
+  @computed get padding() {
+    return this.show && this.width
+  }
+  @computed get transform() {
+    let transform = 'transform: translate3d(' + (this.left ? '-' : '') + this.width + ',0,0)'
+    return !this.show && transform
+  }
+}
+
+// const dl = new Drawer('300px')
+// const dr = new Drawer('28em', false)
+
+@observer export default class Build extends Component {
+  dl = new Drawer('300px')
+  dr = new Drawer('28em', false)
+  render() {
+    let {dl, dr} = this
     return ([
-      <Toolbar pl={drawer.left && pl} pr={drawer.right && pr} drawer={drawer} />,
-      <Navbar w={pl} css={!drawer.left && `transform: translate3d(-${pl},0,0)`}><Link>Navbar</Link></Navbar>,
-      <Sidebar w={pr} css={!drawer.right && `transform: translate3d(${pr},0,0)`}><Link>Sidebar</Link></Sidebar>,
-      <Canvas pl={drawer.left && pl} pr={drawer.right && pr}><Link>Canvas</Link></Canvas>
+      <Toolbar
+        pl={dl.padding}
+        pr={dr.padding}
+        leftClick={dl.toggle}
+        rightClick={dr.toggle} />,
+      <Navbar w={dl.width} css={dl.transform}><Link>Navbar</Link></Navbar>,
+      <Sidebar w={dr.width} css={dr.transform}><Link>Sidebar</Link></Sidebar>,
+      <Canvas pl={dl.padding} pr={dr.padding}><Link>Canvas</Link></Canvas>
     ])
   }
 }
