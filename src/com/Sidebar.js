@@ -2,7 +2,7 @@ import React from 'react'
 import { css } from 'emotion'
 import styled from 'react-emotion'
 import { Expansion, Expand } from './Expansion'
-import { space, width, fontSize, color } from 'styled-system'
+import { space, width } from 'styled-system'
 
 // import { Grid, Cell } from "styled-css-grid"
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { space, width, fontSize, color } from 'styled-system'
+import { space, width } from 'styled-system'
 
 const Navbar = styled.div`
   position: fixed
