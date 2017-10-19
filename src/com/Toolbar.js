@@ -15,7 +15,6 @@ const Toolbar = styled.div`
   will-change: padding-left, padding-right
   transition: .3s cubic-bezier(.25,.8,.5,1);
   ${shawdow}
-  ${({width}) => width && `width:${width}`}
   ${({pl}) => pl && `padding-left:${pl}`}
   ${({pr}) => pr && `padding-right:${pr}`}
 `
@@ -55,9 +54,7 @@ const Icon = styled.i`
 const ButtonIcon = props => {
   return (
     <Button {...props}>
-      <Icon
-        className={props.fa ? `fa fa-${props.fa}` : `material-icons`}
-        {...props}>
+      <Icon className={props.fa ? `fa fa-${props.fa}` : `material-icons`}>
         {props.ma}
       </Icon>
     </Button>
@@ -65,9 +62,10 @@ const ButtonIcon = props => {
 }
 
 export default props => {
+  let { drawer } = props
   return (
     <Toolbar {...props}>
-      <ButtonIcon ma="menu" />
+      <ButtonIcon ma="menu" onClick={e => drawer.left=!drawer.left} />
       <ButtonIcon fa="save" disabled />
       <ButtonIcon fa="copy" />
       <ButtonIcon fa="cut" />
@@ -79,7 +77,7 @@ export default props => {
       <ButtonIcon ma="visibility" />
       <ButtonIcon fa="cube" />
       <ButtonIcon fa="cubes" />
-      <ButtonIcon ma="menu" right />
+      <ButtonIcon ma="menu" right onClick={e => drawer.right=!drawer.right} />
     </Toolbar>
   )
 }
