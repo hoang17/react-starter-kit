@@ -57,14 +57,12 @@ class Drawer {
     this.width = width
     this.left = left
   }
-  toggle = () => {
-    this.show = !this.show
-  }
+  toggle = () => this.show = !this.show
   @computed get padding() {
     return this.show && this.width
   }
   @computed get transform() {
-    let transform = 'transform: translate3d(' + (this.left ? '-' : '') + this.width + ',0,0)'
+    let transform = 'transform: translate3d(' + (this.left ? '-' : '') + '100%,0,0)'
     return !this.show && transform
   }
 }
@@ -84,7 +82,7 @@ class Drawer {
         leftClick={dl.toggle}
         rightClick={dr.toggle} />,
       <Navbar w={dl.width} css={dl.transform}><Link>Navbar</Link></Navbar>,
-      <Sidebar w={dr.width} css={dr.transform}><Link>Sidebar</Link></Sidebar>,
+      <Sidebar w={dr.width} css={dr.transform} />,
       <Canvas pl={dl.padding} pr={dr.padding}><Link>Canvas</Link></Canvas>
     ])
   }

@@ -54,9 +54,7 @@ const Icon = styled.i`
 const ButtonIcon = props => {
   return (
     <Button {...props}>
-      <Icon className={props.fa ? `fa fa-${props.fa}` : `material-icons`}>
-        {props.ma}
-      </Icon>
+      <Icon className={props.fa ? `fa fa-${props.fa}` : `material-icons`}>{props.ma}</Icon>
     </Button>
   )
 }
