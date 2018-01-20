@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { css } from 'emotion'
 import styled from 'react-emotion'
-import { observe, observable } from "mobx"
+import { observe, observable, autorun, extendObservable, toJS } from "mobx"
 import { observer } from 'mobx-react'
 import { Transition } from 'react-transition-group'
 
@@ -55,6 +55,7 @@ const ExpandPanel = styled.li`
 `
 
 @observer export class Expand extends Component {
+  @observable pages = [{name:'test',path:'/'}]
   @observable height = 'auto'
   @observable expand = this.props.expand
 
@@ -67,9 +68,20 @@ const ExpandPanel = styled.li`
     observe(this, 'expand', ({ oldValue, newValue }) => {
       this.toggle(e)
     })
+
+    autorun(() => {
+      // console.log(this.pages[1].name);
+      console.log(toJS(this.pages));
+    })
   }
 
   toggle(e) {
+    this.pages[0] = {name:'test2'}
+    // this.pages[0].path = "/testing"
+    // extendObservable(this.pages[0], {
+    //   name2: 'test2'
+    // })
+
     if (this.expand){
       e.style.display = ''
       e.style.height = 0
