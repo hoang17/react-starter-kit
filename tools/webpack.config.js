@@ -374,13 +374,19 @@ const clientConfig = {
     // https://github.com/th0r/webpack-bundle-analyzer
     ...(isAnalyze ? [new BundleAnalyzerPlugin()] : []),
 
-    new workboxPlugin({
-      globDirectory: DIST_DIR,
-      globPatterns: ['*'],
-      // globPatterns: ['**/*.{html,js,css}'],
-      swDest: path.join(path.resolve(__dirname, '../build/public'), 'service-worker.js')
-    }),
-
+    // Workbox Webpack Plugin
+    // https://www.npmjs.com/package/workbox-webpack-plugin
+    // https://developers.google.com/web/tools/workbox/get-started/webpack
+    ...(isDebug
+      ? []
+      : [
+          new workboxPlugin({
+            globDirectory: DIST_DIR,
+            globPatterns: ['*'],
+            // globPatterns: ['**/*.{html,js,css}'],
+            swDest: path.join(path.resolve(__dirname, '../build/public'), 'service-worker.js')
+          }),
+        ]),
   ],
 
   // Some libraries import Node modules but don't use them in the browser.
