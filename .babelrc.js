@@ -3,19 +3,19 @@
 module.exports = {
   "presets": [
     [
-      "env",
+      '@babel/preset-env',
       {
         "targets": {
           "node": "current"
         }
       }
     ],
-    "stage-0",
-    "stage-1",
-    "stage-2",
-    "stage-3",
-    "flow",
-    "react"
+    '@babel/preset-stage-0',
+    '@babel/preset-stage-1',
+    '@babel/preset-stage-2',
+    '@babel/preset-stage-3',
+    '@babel/preset-flow',
+    '@babel/preset-react',
   ],
   "plugins": [
     "emotion",

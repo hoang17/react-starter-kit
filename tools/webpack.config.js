@@ -86,7 +86,7 @@ const config = {
             // A Babel preset that can automatically determine the Babel plugins and polyfills
             // https://github.com/babel/babel-preset-env
             [
-              'env',
+              '@babel/preset-env',
               {
                 targets: {
                   browsers: pkg.browserslist,
@@ -99,16 +99,20 @@ const config = {
             ],
             // Experimental ECMAScript proposals
             // https://babeljs.io/docs/plugins/#presets-stage-x-experimental-presets-
-            'stage-0',
-            'stage-1',
-            'stage-2',
-            'stage-3',
+            // 'stage-0',
+            // 'stage-1',
+            // 'stage-2',
+            // 'stage-3',
+            '@babel/preset-stage-0',
+            '@babel/preset-stage-1',
+            '@babel/preset-stage-2',
+            '@babel/preset-stage-3',
             // Flow
             // https://github.com/babel/babel/tree/master/packages/babel-preset-flow
-            'flow',
+            '@babel/preset-flow',
             // JSX
             // https://github.com/babel/babel/tree/master/packages/babel-preset-react
-            ['react', { development: isDebug }],
+            ['@babel/preset-react', { development: isDebug }],
           ],
           plugins: [
             "emotion",
@@ -117,13 +121,13 @@ const config = {
             // "babel-plugin-styled-components",
             // Treat React JSX elements as value types and hoist them to the highest scope
             // https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-constant-elements
-            ...(isDebug ? ['transform-react-constant-elements'] : []),
+            ...(isDebug ? [] : ['@babel/transform-react-constant-elements']),
             // Replaces the React.createElement function with one that is more optimized for production
             // https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-inline-elements
-            ...(isDebug ? ['transform-react-inline-elements'] : []),
+            ...(isDebug ? [] : ['@babel/transform-react-inline-elements']),
             // Remove unnecessary React propTypes from the production build
             // https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types
-            ...(isDebug ? ['transform-react-remove-prop-types'] : []),
+            ...(isDebug ? [] : ['transform-react-remove-prop-types']),
           ],
         },
       },
@@ -312,7 +316,7 @@ const clientConfig = {
   target: 'web',
 
   entry: {
-    client: ['babel-polyfill', './src/client.js'],
+    client: ['@babel/polyfill', './src/client.js'],
   },
 
   plugins: [
@@ -401,7 +405,7 @@ const serverConfig = {
   target: 'node',
 
   entry: {
-    server: ['babel-polyfill', './src/server.js'],
+    server: ['@babel/polyfill', './src/server.js'],
   },
 
   output: {
@@ -430,10 +434,10 @@ const serverConfig = {
             ...rule.options,
             presets: rule.options.presets.map(
               preset =>
-                preset[0] !== 'env'
+                preset[0] !== '@babel/preset-env'
                   ? preset
                   : [
-                      'env',
+                      '@babel/preset-env',
                       {
                         targets: {
                           node: pkg.engines.node.match(/(\d+\.?)+/)[0],
@@ -458,8 +462,7 @@ const serverConfig = {
           ...rule,
           options: {
             ...rule.options,
-            name: `public/assets/${rule.options.name}`,
-            publicPath: url => url.replace(/^public/, ''),
+            emitFile: false,
           },
         };
       }
